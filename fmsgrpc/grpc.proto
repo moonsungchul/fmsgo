@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package fmsgo;
+
+service HeartBeat {
+    rpc PingHeartBeat (HeartbeatMsg) returns (HeartbeatReply) {}
+}
+
+message HeartbeatMsg {
+    string ip = 1;
+}
+
+message HeartbeatReply {
+    string ret = 1;
+}
+
+
