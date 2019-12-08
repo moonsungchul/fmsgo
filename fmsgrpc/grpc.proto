@@ -2,8 +2,20 @@ syntax = "proto3";
 
 package fmsgo;
 
-service HeartBeat {
+service FmsRpcService {
     rpc PingHeartBeat (HeartbeatMsg) returns (HeartbeatReply) {}
+    rpc CallCmd (Cmd) returns (CmdReply) {}
+    rpc RegNodeInfo (NodeInfo) returns (RetMsg) {}
+}
+
+message Cmd {
+    string ip = 1;
+    string cmd = 2;
+}
+message CmdReply {
+    string ip = 1;
+    string cmd = 2;
+    string result = 3;
 }
 
 message HeartbeatMsg {
@@ -12,6 +24,16 @@ message HeartbeatMsg {
 
 message HeartbeatReply {
     string ret = 1;
+}
+
+message NodeInfo {
+    string ip = 1;
+    string host_name = 2;
+}
+
+message RetMsg {
+    int32 msg_no = 1;
+    string msg = 2;
 }
 
 

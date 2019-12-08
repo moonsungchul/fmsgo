@@ -24,6 +24,108 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type Cmd struct {
+	Ip                   string   `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
+	Cmd                  string   `protobuf:"bytes,2,opt,name=cmd,proto3" json:"cmd,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Cmd) Reset()         { *m = Cmd{} }
+func (m *Cmd) String() string { return proto.CompactTextString(m) }
+func (*Cmd) ProtoMessage()    {}
+func (*Cmd) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bedfbfc9b54e5600, []int{0}
+}
+
+func (m *Cmd) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Cmd.Unmarshal(m, b)
+}
+func (m *Cmd) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Cmd.Marshal(b, m, deterministic)
+}
+func (m *Cmd) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Cmd.Merge(m, src)
+}
+func (m *Cmd) XXX_Size() int {
+	return xxx_messageInfo_Cmd.Size(m)
+}
+func (m *Cmd) XXX_DiscardUnknown() {
+	xxx_messageInfo_Cmd.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Cmd proto.InternalMessageInfo
+
+func (m *Cmd) GetIp() string {
+	if m != nil {
+		return m.Ip
+	}
+	return ""
+}
+
+func (m *Cmd) GetCmd() string {
+	if m != nil {
+		return m.Cmd
+	}
+	return ""
+}
+
+type CmdReply struct {
+	Ip                   string   `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
+	Cmd                  string   `protobuf:"bytes,2,opt,name=cmd,proto3" json:"cmd,omitempty"`
+	Result               string   `protobuf:"bytes,3,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CmdReply) Reset()         { *m = CmdReply{} }
+func (m *CmdReply) String() string { return proto.CompactTextString(m) }
+func (*CmdReply) ProtoMessage()    {}
+func (*CmdReply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bedfbfc9b54e5600, []int{1}
+}
+
+func (m *CmdReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CmdReply.Unmarshal(m, b)
+}
+func (m *CmdReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CmdReply.Marshal(b, m, deterministic)
+}
+func (m *CmdReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CmdReply.Merge(m, src)
+}
+func (m *CmdReply) XXX_Size() int {
+	return xxx_messageInfo_CmdReply.Size(m)
+}
+func (m *CmdReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_CmdReply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CmdReply proto.InternalMessageInfo
+
+func (m *CmdReply) GetIp() string {
+	if m != nil {
+		return m.Ip
+	}
+	return ""
+}
+
+func (m *CmdReply) GetCmd() string {
+	if m != nil {
+		return m.Cmd
+	}
+	return ""
+}
+
+func (m *CmdReply) GetResult() string {
+	if m != nil {
+		return m.Result
+	}
+	return ""
+}
+
 type HeartbeatMsg struct {
 	Ip                   string   `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -35,7 +137,7 @@ func (m *HeartbeatMsg) Reset()         { *m = HeartbeatMsg{} }
 func (m *HeartbeatMsg) String() string { return proto.CompactTextString(m) }
 func (*HeartbeatMsg) ProtoMessage()    {}
 func (*HeartbeatMsg) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bedfbfc9b54e5600, []int{0}
+	return fileDescriptor_bedfbfc9b54e5600, []int{2}
 }
 
 func (m *HeartbeatMsg) XXX_Unmarshal(b []byte) error {
@@ -74,7 +176,7 @@ func (m *HeartbeatReply) Reset()         { *m = HeartbeatReply{} }
 func (m *HeartbeatReply) String() string { return proto.CompactTextString(m) }
 func (*HeartbeatReply) ProtoMessage()    {}
 func (*HeartbeatReply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bedfbfc9b54e5600, []int{1}
+	return fileDescriptor_bedfbfc9b54e5600, []int{3}
 }
 
 func (m *HeartbeatReply) XXX_Unmarshal(b []byte) error {
@@ -102,24 +204,132 @@ func (m *HeartbeatReply) GetRet() string {
 	return ""
 }
 
+type NodeInfo struct {
+	Ip                   string   `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
+	HostName             string   `protobuf:"bytes,2,opt,name=host_name,json=hostName,proto3" json:"host_name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *NodeInfo) Reset()         { *m = NodeInfo{} }
+func (m *NodeInfo) String() string { return proto.CompactTextString(m) }
+func (*NodeInfo) ProtoMessage()    {}
+func (*NodeInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bedfbfc9b54e5600, []int{4}
+}
+
+func (m *NodeInfo) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_NodeInfo.Unmarshal(m, b)
+}
+func (m *NodeInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_NodeInfo.Marshal(b, m, deterministic)
+}
+func (m *NodeInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_NodeInfo.Merge(m, src)
+}
+func (m *NodeInfo) XXX_Size() int {
+	return xxx_messageInfo_NodeInfo.Size(m)
+}
+func (m *NodeInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_NodeInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_NodeInfo proto.InternalMessageInfo
+
+func (m *NodeInfo) GetIp() string {
+	if m != nil {
+		return m.Ip
+	}
+	return ""
+}
+
+func (m *NodeInfo) GetHostName() string {
+	if m != nil {
+		return m.HostName
+	}
+	return ""
+}
+
+type RetMsg struct {
+	MsgNo                int32    `protobuf:"varint,1,opt,name=msg_no,json=msgNo,proto3" json:"msg_no,omitempty"`
+	Msg                  string   `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RetMsg) Reset()         { *m = RetMsg{} }
+func (m *RetMsg) String() string { return proto.CompactTextString(m) }
+func (*RetMsg) ProtoMessage()    {}
+func (*RetMsg) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bedfbfc9b54e5600, []int{5}
+}
+
+func (m *RetMsg) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RetMsg.Unmarshal(m, b)
+}
+func (m *RetMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RetMsg.Marshal(b, m, deterministic)
+}
+func (m *RetMsg) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RetMsg.Merge(m, src)
+}
+func (m *RetMsg) XXX_Size() int {
+	return xxx_messageInfo_RetMsg.Size(m)
+}
+func (m *RetMsg) XXX_DiscardUnknown() {
+	xxx_messageInfo_RetMsg.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RetMsg proto.InternalMessageInfo
+
+func (m *RetMsg) GetMsgNo() int32 {
+	if m != nil {
+		return m.MsgNo
+	}
+	return 0
+}
+
+func (m *RetMsg) GetMsg() string {
+	if m != nil {
+		return m.Msg
+	}
+	return ""
+}
+
 func init() {
+	proto.RegisterType((*Cmd)(nil), "fmsgo.Cmd")
+	proto.RegisterType((*CmdReply)(nil), "fmsgo.CmdReply")
 	proto.RegisterType((*HeartbeatMsg)(nil), "fmsgo.HeartbeatMsg")
 	proto.RegisterType((*HeartbeatReply)(nil), "fmsgo.HeartbeatReply")
+	proto.RegisterType((*NodeInfo)(nil), "fmsgo.NodeInfo")
+	proto.RegisterType((*RetMsg)(nil), "fmsgo.RetMsg")
 }
 
 func init() { proto.RegisterFile("grpc.proto", fileDescriptor_bedfbfc9b54e5600) }
 
 var fileDescriptor_bedfbfc9b54e5600 = []byte{
-	// 137 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4a, 0x2f, 0x2a, 0x48,
-	0xd6, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4d, 0xcb, 0x2d, 0x4e, 0xcf, 0x57, 0x92, 0xe3,
-	0xe2, 0xf1, 0x48, 0x4d, 0x2c, 0x2a, 0x49, 0x4a, 0x4d, 0x2c, 0xf1, 0x2d, 0x4e, 0x17, 0xe2, 0xe3,
-	0x62, 0xca, 0x2c, 0x90, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x0c, 0x62, 0xca, 0x2c, 0x50, 0x52, 0xe2,
-	0xe2, 0x83, 0xcb, 0x07, 0xa5, 0x16, 0xe4, 0x54, 0x0a, 0x09, 0x70, 0x31, 0x17, 0xa5, 0x96, 0x40,
-	0x95, 0x80, 0x98, 0x46, 0x5e, 0x5c, 0x9c, 0x60, 0x35, 0x4e, 0xa9, 0x89, 0x25, 0x42, 0xb6, 0x5c,
-	0xbc, 0x01, 0x99, 0x79, 0xe9, 0x08, 0x01, 0x61, 0x3d, 0xb0, 0x4d, 0x7a, 0xc8, 0xd6, 0x48, 0x89,
-	0xa2, 0x0b, 0x82, 0xcd, 0x56, 0x62, 0x48, 0x62, 0x03, 0xbb, 0xce, 0x18, 0x10, 0x00, 0x00, 0xff,
-	0xff, 0xf2, 0xc7, 0x6b, 0x17, 0xab, 0x00, 0x00, 0x00,
+	// 301 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x91, 0xc1, 0x4b, 0xc3, 0x30,
+	0x14, 0xc6, 0xb7, 0x95, 0xd5, 0xed, 0xe9, 0xe6, 0x88, 0x4c, 0xc6, 0x04, 0x91, 0x5c, 0xdc, 0x69,
+	0xa2, 0x1e, 0x3c, 0x79, 0xb1, 0x22, 0x7a, 0x70, 0x48, 0xfc, 0x03, 0x46, 0xd6, 0xbe, 0xc5, 0x42,
+	0x5f, 0x13, 0x92, 0x28, 0xf8, 0x27, 0xf9, 0x5f, 0x4a, 0xb3, 0x76, 0xca, 0x3c, 0x78, 0x7b, 0xfd,
+	0xf5, 0x4b, 0xbe, 0xef, 0x7b, 0x01, 0x50, 0xd6, 0xa4, 0x73, 0x63, 0xb5, 0xd7, 0xac, 0xbb, 0x26,
+	0xa7, 0x34, 0x3f, 0x87, 0x28, 0xa1, 0x8c, 0x0d, 0xa1, 0x93, 0x9b, 0x49, 0xfb, 0xac, 0x3d, 0xeb,
+	0x8b, 0x4e, 0x6e, 0xd8, 0x08, 0xa2, 0x94, 0xb2, 0x49, 0x27, 0x80, 0x6a, 0xe4, 0xf7, 0xd0, 0x4b,
+	0x28, 0x13, 0x68, 0x8a, 0xcf, 0xff, 0xd5, 0xec, 0x18, 0x62, 0x8b, 0xee, 0xbd, 0xf0, 0x93, 0x28,
+	0xc0, 0xfa, 0x8b, 0x9f, 0xc2, 0xc1, 0x23, 0x4a, 0xeb, 0x57, 0x28, 0xfd, 0xb3, 0x53, 0xbb, 0x37,
+	0x71, 0x0e, 0xc3, 0xed, 0xff, 0x8d, 0xd7, 0x08, 0x22, 0x8b, 0xbe, 0x96, 0x54, 0x23, 0xbf, 0x81,
+	0xde, 0x42, 0x67, 0xf8, 0x54, 0xae, 0xf5, 0x9f, 0x24, 0x27, 0xd0, 0x7f, 0xd3, 0xce, 0x2f, 0x4b,
+	0x49, 0x58, 0xe7, 0xe9, 0x55, 0x60, 0x21, 0x09, 0xf9, 0x25, 0xc4, 0x02, 0x83, 0xed, 0x18, 0x62,
+	0x72, 0x6a, 0x59, 0xea, 0x70, 0xb4, 0x2b, 0xba, 0xe4, 0xd4, 0x42, 0x57, 0x5e, 0xe4, 0x54, 0xd3,
+	0x83, 0x9c, 0xba, 0xfa, 0x6a, 0xc3, 0xe0, 0x81, 0x9c, 0x30, 0xe9, 0x2b, 0xda, 0x8f, 0x3c, 0x45,
+	0x76, 0x0b, 0x83, 0x97, 0xbc, 0x54, 0x21, 0xe5, 0x1d, 0x4a, 0xcf, 0x8e, 0xe6, 0x61, 0x93, 0xf3,
+	0xdf, 0xbd, 0xa6, 0xe3, 0x5d, 0x18, 0xca, 0xf0, 0x16, 0x9b, 0xc1, 0x5e, 0x22, 0x8b, 0xa2, 0xda,
+	0x39, 0xd4, 0x9a, 0x84, 0xb2, 0xe9, 0xe1, 0xcf, 0xdc, 0x28, 0x2f, 0x60, 0x5f, 0xa0, 0xda, 0x36,
+	0x6d, 0x14, 0x0d, 0x98, 0x0e, 0x6a, 0xb0, 0xa9, 0xc4, 0x5b, 0xab, 0x38, 0x3c, 0xec, 0xf5, 0x77,
+	0x00, 0x00, 0x00, 0xff, 0xff, 0xd7, 0x6e, 0xad, 0x91, 0xe6, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -130,72 +340,144 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// HeartBeatClient is the client API for HeartBeat service.
+// FmsRpcServiceClient is the client API for FmsRpcService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type HeartBeatClient interface {
+type FmsRpcServiceClient interface {
 	PingHeartBeat(ctx context.Context, in *HeartbeatMsg, opts ...grpc.CallOption) (*HeartbeatReply, error)
+	CallCmd(ctx context.Context, in *Cmd, opts ...grpc.CallOption) (*CmdReply, error)
+	RegNodeInfo(ctx context.Context, in *NodeInfo, opts ...grpc.CallOption) (*RetMsg, error)
 }
 
-type heartBeatClient struct {
+type fmsRpcServiceClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewHeartBeatClient(cc *grpc.ClientConn) HeartBeatClient {
-	return &heartBeatClient{cc}
+func NewFmsRpcServiceClient(cc *grpc.ClientConn) FmsRpcServiceClient {
+	return &fmsRpcServiceClient{cc}
 }
 
-func (c *heartBeatClient) PingHeartBeat(ctx context.Context, in *HeartbeatMsg, opts ...grpc.CallOption) (*HeartbeatReply, error) {
+func (c *fmsRpcServiceClient) PingHeartBeat(ctx context.Context, in *HeartbeatMsg, opts ...grpc.CallOption) (*HeartbeatReply, error) {
 	out := new(HeartbeatReply)
-	err := c.cc.Invoke(ctx, "/fmsgo.HeartBeat/PingHeartBeat", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fmsgo.FmsRpcService/PingHeartBeat", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// HeartBeatServer is the server API for HeartBeat service.
-type HeartBeatServer interface {
+func (c *fmsRpcServiceClient) CallCmd(ctx context.Context, in *Cmd, opts ...grpc.CallOption) (*CmdReply, error) {
+	out := new(CmdReply)
+	err := c.cc.Invoke(ctx, "/fmsgo.FmsRpcService/CallCmd", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fmsRpcServiceClient) RegNodeInfo(ctx context.Context, in *NodeInfo, opts ...grpc.CallOption) (*RetMsg, error) {
+	out := new(RetMsg)
+	err := c.cc.Invoke(ctx, "/fmsgo.FmsRpcService/RegNodeInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// FmsRpcServiceServer is the server API for FmsRpcService service.
+type FmsRpcServiceServer interface {
 	PingHeartBeat(context.Context, *HeartbeatMsg) (*HeartbeatReply, error)
+	CallCmd(context.Context, *Cmd) (*CmdReply, error)
+	RegNodeInfo(context.Context, *NodeInfo) (*RetMsg, error)
 }
 
-// UnimplementedHeartBeatServer can be embedded to have forward compatible implementations.
-type UnimplementedHeartBeatServer struct {
+// UnimplementedFmsRpcServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedFmsRpcServiceServer struct {
 }
 
-func (*UnimplementedHeartBeatServer) PingHeartBeat(ctx context.Context, req *HeartbeatMsg) (*HeartbeatReply, error) {
+func (*UnimplementedFmsRpcServiceServer) PingHeartBeat(ctx context.Context, req *HeartbeatMsg) (*HeartbeatReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PingHeartBeat not implemented")
 }
-
-func RegisterHeartBeatServer(s *grpc.Server, srv HeartBeatServer) {
-	s.RegisterService(&_HeartBeat_serviceDesc, srv)
+func (*UnimplementedFmsRpcServiceServer) CallCmd(ctx context.Context, req *Cmd) (*CmdReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CallCmd not implemented")
+}
+func (*UnimplementedFmsRpcServiceServer) RegNodeInfo(ctx context.Context, req *NodeInfo) (*RetMsg, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegNodeInfo not implemented")
 }
 
-func _HeartBeat_PingHeartBeat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func RegisterFmsRpcServiceServer(s *grpc.Server, srv FmsRpcServiceServer) {
+	s.RegisterService(&_FmsRpcService_serviceDesc, srv)
+}
+
+func _FmsRpcService_PingHeartBeat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(HeartbeatMsg)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HeartBeatServer).PingHeartBeat(ctx, in)
+		return srv.(FmsRpcServiceServer).PingHeartBeat(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fmsgo.HeartBeat/PingHeartBeat",
+		FullMethod: "/fmsgo.FmsRpcService/PingHeartBeat",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HeartBeatServer).PingHeartBeat(ctx, req.(*HeartbeatMsg))
+		return srv.(FmsRpcServiceServer).PingHeartBeat(ctx, req.(*HeartbeatMsg))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _HeartBeat_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "fmsgo.HeartBeat",
-	HandlerType: (*HeartBeatServer)(nil),
+func _FmsRpcService_CallCmd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Cmd)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FmsRpcServiceServer).CallCmd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fmsgo.FmsRpcService/CallCmd",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FmsRpcServiceServer).CallCmd(ctx, req.(*Cmd))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FmsRpcService_RegNodeInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NodeInfo)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FmsRpcServiceServer).RegNodeInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fmsgo.FmsRpcService/RegNodeInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FmsRpcServiceServer).RegNodeInfo(ctx, req.(*NodeInfo))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _FmsRpcService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "fmsgo.FmsRpcService",
+	HandlerType: (*FmsRpcServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "PingHeartBeat",
-			Handler:    _HeartBeat_PingHeartBeat_Handler,
+			Handler:    _FmsRpcService_PingHeartBeat_Handler,
+		},
+		{
+			MethodName: "CallCmd",
+			Handler:    _FmsRpcService_CallCmd_Handler,
+		},
+		{
+			MethodName: "RegNodeInfo",
+			Handler:    _FmsRpcService_RegNodeInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -20,14 +20,24 @@ func main() {
 		log.Fatalf("dit not connect : %v", err)
 	}
 	defer conn.Close()
-	c := pb.NewHeartBeatClient(conn)
+	c := pb.NewFmsRpcServiceClient(conn)
+
+	/*
+		ctx, canncel := context.WithTimeout(context.Background(), time.Second)
+		defer canncel()
+		r, err := c.PingHeartBeat(ctx, &pb.HeartbeatMsg{Ip: "192.168.0.13"})
+		if err != nil {
+			log.Fatalf("cound not greet :%v", err)
+		}
+		log.Printf("Greeting: %s", r.GetRet())
+	*/
 
 	ctx, canncel := context.WithTimeout(context.Background(), time.Second)
 	defer canncel()
-	r, err := c.PingHeartBeat(ctx, &pb.HeartbeatMsg{Ip: "192.168.0.13"})
+	r, err := c.RegNodeInfo(ctx, &pb.NodeInfo{Ip: "192.168.0.13", HostName: "hostname"})
 	if err != nil {
 		log.Fatalf("cound not greet :%v", err)
 	}
-	log.Printf("Greeting: %s", r.GetRet())
 
+	log.Printf("Reg node info : %v", r.GetMsg())
 }
