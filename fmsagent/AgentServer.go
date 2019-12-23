@@ -21,6 +21,7 @@ type Agent struct {
 	Manager    *fmscore.NodeManager
 	ServerIP   string
 	ServerPort string
+	AgentIP    string
 }
 
 func NewAgent() *Agent {
@@ -43,15 +44,6 @@ func main() {
 		log.Println("error ")
 	}
 	defer con.Close()
-	log.Println("test ................>>>>>. : ")
-
-	go func() {
-		client.RegisterNodeInfo("192.168.0.13", "moonstar")
-		for {
-			fmt.Println("time loop ")
-			time.Sleep(30 * time.Second)
-		}
-	}()
 
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
@@ -61,6 +53,16 @@ func main() {
 	server := NewAgent()
 	server.ServerIP = *serverIP
 	server.ServerPort = port
+	server.AgentIP = client.GetIpAddress()
+
+	go func() {
+		client.RegisterNodeInfo(server.AgentIP, "moonstar")
+
+		for {
+			fmt.Println("time loop ")
+			time.Sleep(30 * time.Second)
+		}
+	}()
 
 	s := grpc.NewServer()
 	pb.RegisterFmsRpcServiceServer(s, server)

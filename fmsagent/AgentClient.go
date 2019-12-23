@@ -2,7 +2,10 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
+	"net"
+	"strings"
 	"time"
 
 	pb "github.com/moonsungchul/fmsgo/fmsgrpc"
@@ -27,7 +30,7 @@ func NewAgentClient(serverIP string, port string) *AgentClient {
 	return &AgentClient{ServerIP: serverIP, Port: port}
 }
 
-// OpenConn : RPC Connection 연고 리턴한다.
+// OpenConn : RPC Connection 열고 리턴한다.
 func (s *AgentClient) OpenConn() (*grpc.ClientConn, error) {
 	address := s.ServerIP + ":" + s.Port
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
@@ -49,4 +52,33 @@ func (s *AgentClient) RegisterNodeInfo(ip string, hostname string) (string, erro
 		return "node register error ", err
 	}
 	return r.GetMsg(), err
+}
+
+// PingHeartbeat : heartbeat을 전송한다.
+func (s *AgentClient) PingHeartbeat() (string, error) {
+	c := pb.NewFmsRpcServiceClient(s.ClientConn)
+	ctx, canncel := context.WithTimeout(context.Background(), time.Second)
+	defer canncel()
+	mm := pb.HeartbeatMsg{Ip: "192.168.0.13"}
+	r, err := c.PingHeartBeat(ctx, &mm)
+	if err != nil {
+		return "node register error ", err
+	}
+	return r.GetRet(), err
+}
+
+func (s *AgentClient) GetIpAddress() string {
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		panic(err)
+	}
+	for i, addr := range addrs {
+		fmt.Printf("%d %v\n", i, addr)
+		//if (strings.Contains(addr.String(), "127.0.0.1") == false)
+		if strings.Contains(addr.String(), "127.0.0.1") == false && strings.Contains(addr.String(), "::") == false {
+			ss := strings.Split(addr.String(), "/")
+			return ss[0]
+		}
+	}
+	return ""
 }
