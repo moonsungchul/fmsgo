@@ -10,9 +10,7 @@ func NewAgentManager(fname string, serverIp string) *AgentManager {
 	return &AgentManager{DBStore: store, ServerIp: serverIp}
 }
 
-/*
-자신의 노드 정보를 서버에 저장한다.
-*/
+// 자신의 상태 정보를 서버에 등록 한다.
 //func (s *AgentManager) RegNodeInfo() (string, error) {
-
+//
 //}
