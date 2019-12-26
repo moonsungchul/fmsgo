@@ -10,8 +10,9 @@ type NodeInfo struct {
 	gorm.Model
 	IP       string
 	HostName string
-	Status   int // 1 : 서버 정상 실행 , 0 : 서버 죽어 있음.
-	HeatBeat int // 초기 60 * 5 = 300 초 5분 동안 응답이 없으면 죽었다고 판단
+	Status   int   // 1 : 서버 정상 실행 , 0 : 서버 죽어 있음.
+	HeatBeat int   // 초기 60 * 5 = 300 초 5분 동안 응답이 없으면 죽었다고 판단
+	LastTime int64 // 마지막으로 보내온 시간 unix time
 }
 
 type CmdResult struct {

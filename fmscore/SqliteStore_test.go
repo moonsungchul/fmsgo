@@ -1,24 +1,25 @@
 package fmscore
 
 import (
-	"log"
 	"testing"
 )
 
 func TestDB(t *testing.T) {
-	db := sqlitestore{DbFile: "./fms.db"}
-	db.CreateTable()
+	/*
+		db := sqlitestore{DbFile: "./fms.db"}
+		db.CreateTable()
 
-	//db.insertNodeInfo("192.168.0.15", "moonstar-GE70-0NC-GE70-0ND", 1)
-	//db.insertCmdResult("192.168.0.20", "ls -lF", "testdedkek")
-	//db.insertCmdResult("192.168.0.15", "ls -lF", "testdedkek")
+		//db.insertNodeInfo("192.168.0.15", "moonstar-GE70-0NC-GE70-0ND", 1)
+		//db.insertCmdResult("192.168.0.20", "ls -lF", "testdedkek")
+		//db.insertCmdResult("192.168.0.15", "ls -lF", "testdedkek")
 
-	nodeinfo, err := db.getNodeInfo("192.168.0.15")
-	if err != nil {
-		log.Println(err)
-	} else {
-		log.Println("node info : ", nodeinfo)
-	}
+		nodeinfo, err := db.getNodeInfo("192.168.0.15")
+		if err != nil {
+			log.Println(err)
+		} else {
+			log.Println("node info : ", nodeinfo)
+		} */
+	print("test")
 
 	/*
 		cresult := db.getCmdResult("192.168.0.15")

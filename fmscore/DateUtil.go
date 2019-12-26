@@ -1,28 +1,19 @@
 package fmscore
 
 import (
-	"log"
 	"time"
 )
 
 type DateUtil struct {
 }
 
-// 두 시간의 차이를 초로 리턴한다.
-func (s *DateUtil) GetDif(sdate string) float64 {
-	layout := "2006-01-02 15:04:05"
-	a, err := time.Parse(layout, sdate)
-	if err != nil {
-		log.Println("error : ", err)
-		return 0
-	}
-	//loc, _ := time.LoadLocation("Asia/Seoul")
-	//kst := a.In(loc)
+// 이전 시간 부터 오늘 시간까지의 차리를 리턴 한다.
+func (s *DateUtil) GetDifNow(uinx_time int64) int64 {
+	ut := time.Now().Unix()
+	return ut - uinx_time
+}
 
-	log.Println(">>>>> a: ", a)
-	log.Println(">>>>> now: ", time.Now())
-
-	dif := time.Now().Sub(a).Hours()
-	log.Println("dif : ", dif)
-	return dif
+// end_time - start_time 의 차를 구한하다. 두 시간은 unix time이다.
+func (s *DateUtil) GetDif(start_time int64, end_time int64) int64 {
+	return end_time - start_time
 }

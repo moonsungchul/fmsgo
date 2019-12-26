@@ -3,12 +3,19 @@ package fmscore
 import (
 	"log"
 	"testing"
+	"time"
 )
 
 func TestUtil(t *testing.T) {
 	log.Println(">>>>>>>>>>>>>>>>>> Date Util test")
-	util := DateUtil{}
-	dif := util.GetDif("2019-12-26 00:30:00")
-	log.Println("dif second : ", dif)
 
+	now := time.Now()
+	log.Println("now : ", now)
+	log.Println("unix sec : ", now.Unix())
+
+	time.Sleep(2 * time.Second)
+	util := DateUtil{}
+	dif := util.GetDifNow(now.Unix())
+
+	log.Println("dif : ", dif)
 }
