@@ -11,7 +11,7 @@ import (
 
 const (
 	HeartBeatTime  = 30  // HeartBeat  체크 주기
-	heartBeatLimit = 300 // heart beat 체크 후 300초 동안 지나면 상태 아웃으로 판단
+	HeartBeatLimit = 300 // heart beat 체크 후 300초 동안 지나면 상태 아웃으로 판단
 )
 
 /*
@@ -47,6 +47,7 @@ func (s *NodeManager) RegisterNode(ip string, hostName string) (string, error) {
 
 	if co > 0 {
 		msg := fmt.Sprintf("%s는 이미 있는 IP입니다.", ip)
+		log.Println(msg)
 		return msg, ExistsIpError
 	}
 	nodeinfo.IP = ip
@@ -74,4 +75,18 @@ func (s *NodeManager) PingHeartBeat(ip string, status int) (string, error) {
 	nodeinfo.Status = status
 	s.con.Save(&nodeinfo)
 	return "Update ok", nil
+}
+
+// 각 노드들의 상태를 확인하고 계속적으로 응답이 없으면 상태를 shutdown 상태로
+// 변경한다.
+func (s *NodeManager) CheckNodes() {
+	var nodeinfos []NodeInfo
+	s.con.Find(&nodeinfos)
+	log.Println(">>>>>>> ndoe infos : ", nodeinfos)
+	for v, val := range nodeinfos {
+		log.Println(">>>>>> v ", v, val)
+		if val.LastTime > HeartBeatLimit {
+			val.Status = 0
+		}
+	}
 }
