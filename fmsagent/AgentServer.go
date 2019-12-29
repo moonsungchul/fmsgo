@@ -30,7 +30,7 @@ func NewAgent() *Agent {
 }
 
 func main() {
-	serverIP := flag.String("server", "localost", "Server ip ")
+	serverIP := flag.String("server", "localhost", "Server ip ")
 	serverPort := flag.String("server_port", "50051", "Server port")
 	flag.Parse()
 
@@ -57,9 +57,10 @@ func main() {
 
 	go func() {
 		client.RegisterNodeInfo(server.AgentIP, "moonstar")
-
+		log.Println(">>>>>>>>>>>>>>>>>>>>>> test")
 		for {
-			fmt.Println("time loop ")
+			fmt.Println("send ping ")
+			client.PingHeartbeat()
 			time.Sleep(30 * time.Second)
 		}
 	}()
@@ -69,6 +70,7 @@ func main() {
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("fail to server : %v", err)
 	}
+
 	fmt.Println("server start ...")
 
 }
