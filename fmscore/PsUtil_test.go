@@ -19,7 +19,7 @@ func TestPsUtil(t *testing.T) {
 	dis := util.GetDiskInfo()
 	log.Println("dis : ", dis)
 
-	uu := util.GetDiskUsage()
-	log.Println("uu : ", uu)
+	total, free, used, per := util.GetDiskUsage("/")
+	log.Println("uu : ", total, free, used, per)
 
 }
