@@ -22,6 +22,27 @@ type CmdResult struct {
 	Result string
 }
 
+type MemoryInfo struct {
+	gorm.Model
+	Total      uint64
+	Free       uint64
+	UsePercent uint64
+}
+
+type CPUInfo struct {
+	gorm.Model
+	phyCPU   int
+	logicCPU int
+}
+
+type DiskInfo struct {
+	gorm.Model
+	Total       uint64
+	Free        uint64
+	Used        uint64
+	UsedPercent uint64
+}
+
 type SqliteOrm struct {
 	DbFile string
 }
