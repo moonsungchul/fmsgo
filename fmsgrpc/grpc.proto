@@ -36,4 +36,26 @@ message RetMsg {
     string msg = 2;
 }
 
+message MemoryInfo {
+    uint64 total = 1;
+    uint64 free = 2;
+    double use_percent = 3;
+}
+
+message CPUInfo {
+    int32 LogicCPU = 1;
+    int32 PhysicsCPU = 2;
+    repeated double  PercentCPU = 3;
+}
+
+message DiskInfo {
+    uint64 Total = 1;
+    uint64 Free = 2;
+    uint64 Used = 3;
+    uint64 Percent = 4;
+}
+
+
+
+
 
